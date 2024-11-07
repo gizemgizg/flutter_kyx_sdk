@@ -1,0 +1,624 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name KYX
+import ARKit
+import AVFAudio
+import AVFoundation
+import Accelerate
+import CoreGraphics
+import CoreImage
+import CoreML
+import CoreMedia
+import CoreMotion
+import DeveloperToolsSupport
+import Foundation
+@_exported import KYX
+import OpenSSL
+import SceneKit
+import Speech
+import Swift
+import SwiftUI
+import UIKit
+import Vision
+import VisionKit
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_hasMissingDesignatedInitializers public class KYXAlert {
+  @objc deinit
+}
+public struct KYXFillFormResult : Swift.Codable {
+  public var statusCode: Swift.Int
+  public var succeeded: Swift.Bool
+  public var errors: [Swift.String]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public protocol KnowYourXProtocol {
+  func signIn()
+  func createTransaction()
+  func startDetectType()
+  func startNFC()
+  func startLiveness()
+  func startSpeech2Text()
+  func startVideoCall()
+  func startResultPage()
+  func finishTransaction()
+  #if compiler(>=5.3) && $AsyncAwait
+  func signIn() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func createTransaction() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func startDetectType() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func startNFC() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func startLiveness() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func startSpeech2Text() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func startVideoCall() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func startResultPage() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  func finishTransaction() async -> Swift.Bool
+  #endif
+  func addViewHierarch(newHierarchy: [Swift.Int : KYX.KYXViewController.Type])
+  func run(transactionType: Swift.String, nfcData: KYX.KYXNFCData?, verifyData: KYX.KYXVerifyData?, language: KYX.KYXLanguage, speechMessageText: Swift.String, isShowResultPage: Swift.Bool, isTextToSpeechEnabled: Swift.Bool, frontCardDetectionThreshold: Swift.Float?, backCardDetectionThreshold: Swift.Float?)
+  func detailMobile(transactionGuid: Swift.String)
+  func checkTransactionStatus(identityNo: Swift.String?, transactionGuid: Swift.String?)
+  func exportPdf(transactionGuid: Swift.String)
+  func getVerificationResultMobile(transactionGuid: Swift.String)
+  func getVerificationResult(transactionGuid: Swift.String)
+  func fillForm(form: KYX.KYXFillFormRequest)
+}
+public class KnowYourX : KYX.KnowYourXProtocol {
+  #if compiler(>=5.3) && $AsyncAwait
+  public func signIn() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func createTransaction() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func startDetectType() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func startNFC() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func startLiveness() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func startSpeech2Text() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func startVideoCall() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func startResultPage() async -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func finishTransaction() async -> Swift.Bool
+  #endif
+  public init(delegate: any KYX.KnowYourXDelegate, settings: KYX.KYXSettings)
+  public init(delegate: any KYX.KnowYourXDelegate, setting: KYX.KYXSettingsToken)
+  public func signIn()
+  public func createTransaction()
+  public func startDetectType()
+  public func startNFC()
+  public func startLiveness()
+  public func startSpeech2Text()
+  public func startVideoCall()
+  public func startResultPage()
+  public func finishTransaction()
+  public func addViewHierarch(newHierarchy: [Swift.Int : KYX.KYXViewController.Type])
+  public func run(transactionType: Swift.String, nfcData: KYX.KYXNFCData? = nil, verifyData: KYX.KYXVerifyData? = nil, language: KYX.KYXLanguage, speechMessageText: Swift.String, isShowResultPage: Swift.Bool, isTextToSpeechEnabled: Swift.Bool, frontCardDetectionThreshold: Swift.Float? = 0.8, backCardDetectionThreshold: Swift.Float? = 0.8)
+  public func detailMobile(transactionGuid: Swift.String)
+  public func checkTransactionStatus(identityNo: Swift.String?, transactionGuid: Swift.String?)
+  public func exportPdf(transactionGuid: Swift.String)
+  public func getVerificationResultMobile(transactionGuid: Swift.String)
+  public func getVerificationResult(transactionGuid: Swift.String)
+  public func fillForm(form: KYX.KYXFillFormRequest)
+  @objc deinit
+}
+public enum KnowYourXOutputs {
+  case success(result: KYX.KYXProcessModel)
+  case failure(message: Swift.String)
+  case error(message: Swift.String)
+  case viewsHierarchy(hierarchy: [KYX.KYXScreen])
+  case finishProcess(result: KYX.KYXProcessModel)
+  case setupFinished(hierarchy: [KYX.KYXScreen])
+  case tryAgain(result: KYX.KYXProcessModel)
+  case notInWorkingHours
+  case detailMobileResult(result: KYX.KYXDetailMobileModel)
+  case checkTransactionStatusResult(result: KYX.KYXCheckTransactionStatusResponseModel)
+  case exportPdfResult(result: KYX.KYXCreatePdfResponseModel)
+  case onVerificationResultMobile(result: KYX.KYXVerificationResultsMobileModel)
+  case onVerificationResult(result: KYX.KYXVerificationData)
+}
+public protocol KnowYourXDelegate : AnyObject {
+  func output(_ kyxOutput: KYX.KnowYourXOutputs)
+  func authenticated()
+  func onTransactionsTypes(transactionTypes: [KYX.KYXTransactionModel])
+  func onSuccess()
+  func onFinished()
+  func onSetupFinished()
+  func onRequestForNewTransaction()
+  func onStepChanged()
+  func onStepFailure()
+  func onStepSuccess()
+  func onBypassRequest()
+  func onParametersExecuted()
+}
+public enum KYXServiceError : Swift.Error {
+  case generateUrl(internal: any Swift.Error)
+  case serializationError(internal: any Swift.Error)
+  case networkError(internal: any Swift.Error, statusCode: Swift.Int?)
+  case unknownError
+}
+public protocol KYXDictionaryConvertible {
+  func toDictionary() -> [Swift.String : Any]
+}
+extension KYX.KYXDictionaryConvertible {
+  public func toDictionary() -> [Swift.String : Any]
+  public func unwrap(_ any: Any) -> Any?
+}
+public struct KYXDetailMobileModel : Swift.Codable {
+  public let statusCode: Swift.Int
+  public let data: KYX.KYXDetailMobileData?
+  public let succeeded: Swift.Bool
+  public let errors: [Swift.String]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct KYXDetailMobileData : Swift.Codable, KYX.KYXDictionaryConvertible {
+  public let guid: Swift.String?
+  public let status: Swift.Int?, documentType: Swift.Int?
+  public let detail: KYX.Detail?
+  public let items: [KYX.Item]?
+  public let logs: [KYX.Log]?
+  public let scores: [KYX.Score]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Detail : Swift.Codable, KYX.KYXDictionaryConvertible {
+  public let isVerifiedFromKps: Swift.Bool?, isLivenessVerifiedFromClient: Swift.Bool?, isMLIControl: Swift.Bool?, isGokkusagiControl: Swift.Bool?
+  public let isOVIControl: Swift.Bool?, isGuillocheControl: Swift.Bool?, isBarcodeControl: Swift.Bool?, isMRZControl: Swift.Bool?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Item : Swift.Codable, KYX.KYXDictionaryConvertible {
+  public let documentGroup: Swift.Int?
+  public let identityNo: Swift.String?, firstName: Swift.String?, lastName: Swift.String?
+  public let birthDate: Swift.String?
+  public let nationality: Swift.String?, gender: Swift.String?
+  public let mothersName: Swift.String?, fathersName: Swift.String?
+  public let documentNo: Swift.String?
+  public let issuedBy: Swift.String?
+  public let expiryDate: Swift.String?, mrz: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Log : Swift.Codable, KYX.KYXDictionaryConvertible {
+  public let step: Swift.Int?, status: Swift.Int?
+  public let createdAt: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Score : Swift.Codable, KYX.KYXDictionaryConvertible {
+  public let imageValidationType: Swift.Int?
+  public let approved: Swift.Bool?
+  public let score: Swift.Double?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension CoreMedia.CMSampleBuffer {
+  public func cgImage(withOrientation orientation: ImageIO.CGImagePropertyOrientation) -> CoreGraphics.CGImage?
+}
+public struct KYXViewLayout {
+  public var layoutStructure: [KYX.KYXLayoutStructure]
+  public var backgroundColor: Swift.String
+  public var buttonColor: Swift.String
+  public var textColor: Swift.String
+  public var textSize: Swift.Int
+  public var textFont: Swift.String
+}
+public struct KYXHeaderSettings {
+}
+@objc public class KYXPerspectiveCorrectionParamsOperation : Foundation.Operation {
+  public init(pixelBuffer: CoreVideo.CVImageBuffer, orientation: ImageIO.CGImagePropertyOrientation, rect: Vision.VNRectangleObservation)
+  @objc override dynamic public func main()
+  @objc deinit
+}
+public enum KYXIDTypes {
+  case idCard
+  case oldIdCard
+  case driverLicence
+  case passport
+  public static func == (a: KYX.KYXIDTypes, b: KYX.KYXIDTypes) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct KYXProcessModel : KYX.KYXDictionaryConvertible {
+  public var detectTypeResult: KYX.KYXProcessDetectTypeResult?
+  public var nfcResult: KYX.KYXProcessNFCResult?
+  public var livenessResult: KYX.KYXProcessLivenessResult?
+  public var speechToTextResult: KYX.KYXProcessSpeechToTextResult?
+  public var videoCallResult: KYX.KYXProcessVideoCallResult?
+  public var transactionId: Swift.String?
+  public var isExit: Swift.Bool?
+  public init()
+}
+public struct KYXProcessDetectTypeResult : KYX.KYXDictionaryConvertible {
+  public var frontDetect: KYX.KYXProcessDetectTypeFrontResult?
+  public var backDetect: KYX.KYXProcessDetectTypeBackResult?
+  public init(frontDetect: KYX.KYXProcessDetectTypeFrontResult? = nil, backDetect: KYX.KYXProcessDetectTypeBackResult? = nil)
+}
+public struct KYXProcessDetectTypeFrontResult : KYX.KYXDictionaryConvertible {
+  public var image: UIKit.UIImage
+}
+public struct KYXProcessDetectTypeBackResult : KYX.KYXDictionaryConvertible {
+  public var image: UIKit.UIImage
+  public var documentNumber: Swift.String
+  public var expiryDate: Foundation.Date
+  public var birthDate: Foundation.Date
+}
+public struct KYXProcessNFCResult : KYX.KYXDictionaryConvertible {
+  public var name: Swift.String
+  public var surname: Swift.String
+  public var personalNumber: Swift.String
+  public var sex: Swift.String
+  public var birthDate: Swift.String
+  public var expireDate: Swift.String
+  public var serialNumber: Swift.String
+  public var nationality: Swift.String
+  public var documentType: KYX.KYXDocumentType
+  public var issuerAuthory: Swift.String
+  public var nfcImage: UIKit.UIImage
+  public var mrz: Swift.String
+  public var placeOfBirth: Swift.String
+}
+public struct KYXProcessLivenessResult : KYX.KYXDictionaryConvertible {
+  public var isLiveness: Swift.Bool
+  public var smilePicture: UIKit.UIImage
+  public var rightPicture: UIKit.UIImage?
+  public var leftPicture: UIKit.UIImage?
+}
+public struct KYXProcessSpeechToTextResult {
+  public var speechVideo: Foundation.Data
+  public var compressUrl: Foundation.URL
+}
+public struct KYXProcessVideoCallResult : KYX.KYXDictionaryConvertible {
+  public var success: Swift.Bool
+  public var message: Swift.String?
+}
+public enum KYXDocumentType : Swift.String {
+  case idCard
+  case passport
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct KYXCheckTransactionStatusResponseModel : Swift.Codable {
+  public var statusCode: Swift.Int
+  public var data: KYX.KYXCheckTransactionStatusDetailData?
+  public var succeeded: Swift.Bool
+  public var errors: [Swift.String]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct KYXCheckTransactionStatusDetailData : Swift.Codable, KYX.KYXDictionaryConvertible {
+  public var isTransaction: Swift.Bool
+  public var message: Swift.String
+  public var status: Swift.Int
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum KYXLayout {
+  case first
+  case second
+  case third
+  case fourth
+  case fifth
+  public static func == (a: KYX.KYXLayout, b: KYX.KYXLayout) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class KYXLoading {
+  public static let shared: KYX.KYXLoading
+  @objc deinit
+}
+public struct KYXError {
+  public let description: Swift.String
+  public let statusCode: Swift.Int
+  public let errorMessage: Swift.String
+}
+public enum KYXErrors {
+  case startManagerError
+  case transactionStepError
+  case startSequenceError
+  case sequenceIndexError
+  case currentSequenceError
+  case viewHierarchCannotGet
+  case signInError
+  case tokenError
+  case createTransactionError
+  case updateTransactionStatusError
+  case getResultError
+  public func getInformation() -> KYX.KYXError
+  public static func == (a: KYX.KYXErrors, b: KYX.KYXErrors) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct KYXFillFormRequest : Swift.Codable {
+  public var firstName: Swift.String
+  public var lastName: Swift.String
+  public var phone: Swift.String
+  public var email: Swift.String
+  public var kvvkApproved: Swift.Bool
+  public var kvvkApprovedDate: Swift.String
+  public init(firstName: Swift.String, lastName: Swift.String, phone: Swift.String, email: Swift.String, kvvkApproved: Swift.Bool, kvvkApprovedDate: Swift.String)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc @available(iOS 11.0, *)
+public class PerspectiveCorrectionParamsOperation : Foundation.Operation {
+  public init(pixelBuffer: CoreVideo.CVImageBuffer, orientation: ImageIO.CGImagePropertyOrientation, rect: Vision.VNRectangleObservation)
+  @objc override dynamic public func main()
+  @objc deinit
+}
+public struct KYXVerifyData {
+  public let identityNumber: Swift.String?
+  public let birthDate: Swift.String?
+  public let serialNumber: Swift.String?
+  public let firstName: Swift.String?
+  public let lastName: Swift.String?
+  public let nationality: Swift.String?
+  public let placeOfBirth: Swift.String?
+  public init(identityNumber: Swift.String?, birthDate: Swift.String?, serialNumber: Swift.String?, firstName: Swift.String?, lastName: Swift.String?, nationality: Swift.String?, placeOfBirth: Swift.String?)
+}
+public struct KYXNFCData {
+  public var documentNumber: Swift.String
+  public var birthDate: Foundation.Date
+  public var expiryDate: Foundation.Date
+  public init(documentNumber: Swift.String, birthDate: Foundation.Date, expiryDate: Foundation.Date)
+}
+public struct KYXVerificationResultsMobileModel : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct VerificationData : Swift.Codable, KYX.KYXDictionaryConvertible {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ResultsModel : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct TranslatesModel : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum KYXViewSettings {
+  case withoutView
+  case withView
+  case customizableView
+  public static func == (a: KYX.KYXViewSettings, b: KYX.KYXViewSettings) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct KYXLayoutStructure {
+  public var component: Swift.String
+  public var constraint: Swift.String
+}
+public struct KYXAccount {
+  public var baseUrl: Swift.String
+  public var email: Swift.String
+  public var password: Swift.String
+  public var organizationCode: Swift.String
+  public var customHeaders: KYX.KYXHeaders?
+  public init(baseUrl: Swift.String, email: Swift.String, password: Swift.String, organizationCode: Swift.String, customHeaders: KYX.KYXHeaders? = nil)
+}
+@_hasMissingDesignatedInitializers public class KYXHelper {
+  public static func getColorAsset(colorName color: Swift.String) -> UIKit.UIColor
+  public static func getImageAsset(assetName asset: Swift.String) -> UIKit.UIImage?
+  public static func createUserAgent() -> Swift.String
+  public static func getDeviceModel() -> Swift.String
+  @objc deinit
+}
+extension Swift.String {
+  public static func dateFormatterSeperate(String wholeString: Swift.String) -> Swift.String
+}
+public struct KYXTransactionModel : Swift.Codable {
+  public let name: Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct KYXCreatePdfResponseModel : Swift.Codable {
+  public let statusCode: Swift.Int
+  public let succeeded: Swift.Bool
+  public let errors: [Swift.String]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum KYXStages : Swift.Int, Swift.Codable {
+  case start
+  case detectTypeFront
+  case detectTypeBack
+  case nfc
+  case faceRecognation
+  case liveness
+  case speech
+  case videoCall
+  case success
+  case mrzParser
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public typealias KYXColorSet = [KYX.KYXColors : UIKit.UIColor]
+public typealias KYXHeaders = [Swift.String : Swift.String]
+public struct KYXSettings {
+  public var viewConfiguration: KYX.KYXViewConfiguration
+  public var account: KYX.KYXAccount
+  public var nfcSetting: KYX.KYXNFCSettings
+  public var additionalParameters: KYX.KYXAdditionalControlParameters?
+  public var isShowResultPage: Swift.Bool?
+  public var frontCardDetectionThreshold: Swift.Float?
+  public var backCardDetectionThreshold: Swift.Float?
+  public var isTextToSpeechEnabled: Swift.Bool?
+  public var language: KYX.KYXLanguage?
+  public init(viewConfiguration: KYX.KYXViewConfiguration, account: KYX.KYXAccount, nfcSetting: KYX.KYXNFCSettings = .haveNFC, additionalParameters: KYX.KYXAdditionalControlParameters? = nil)
+}
+public struct KYXSettingsToken {
+  public var viewConfiguration: KYX.KYXViewConfiguration
+  public var token: Swift.String
+  public var baseUrl: Swift.String
+  public var customHeaders: KYX.KYXHeaders?
+  public var nfcSetting: KYX.KYXNFCSettings
+  public var additionalParameters: KYX.KYXAdditionalControlParameters?
+  public var account: KYX.KYXAccount
+  public init(viewConfiguration: KYX.KYXViewConfiguration, token: Swift.String, baseUrl: Swift.String, nfcSetting: KYX.KYXNFCSettings = .haveNFC, additionalParameters: KYX.KYXAdditionalControlParameters? = nil, customHeaders: KYX.KYXHeaders? = nil)
+}
+public struct KYXViewConfiguration {
+  public var viewSetting: KYX.KYXViewSettings
+  public var logo: UIKit.UIImage?
+  public var colorSet: KYX.KYXColorSet?
+  public var viewLayout: KYX.KYXLayout?
+  public var showBrand: Swift.Bool?
+  public init(viewSetting: KYX.KYXViewSettings = .withView, logo: UIKit.UIImage? = nil, colorSet: KYX.KYXColorSet? = nil, viewLayout: KYX.KYXLayout? = nil)
+}
+public enum KYXNFCSettings {
+  case noNFC
+  case haveNFC
+  case dependsOnDevice
+  public static func == (a: KYX.KYXNFCSettings, b: KYX.KYXNFCSettings) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct KYXAdditionalControlParameters {
+  public var nfcParameters: [Swift.String : Any]?
+  public var checkProvider: Swift.String?
+}
+public enum KYXColors {
+  case primaryColor
+  case secondaryColor
+  case textColor
+  public static func == (a: KYX.KYXColors, b: KYX.KYXColors) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct KYXScreen : Swift.Equatable {
+  public static func == (lhs: KYX.KYXScreen, rhs: KYX.KYXScreen) -> Swift.Bool
+}
+public enum KYXLanguage : Swift.String {
+  case english
+  case turkish
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct KYXVerificationResults : Swift.Codable {
+  public let statusCode: Swift.Int
+  public let data: KYX.KYXVerificationData?
+  public let succeeded: Swift.Bool
+  public let errors: [Swift.String]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct KYXVerificationData : Swift.Codable, KYX.KYXDictionaryConvertible {
+  public let passiveLiveness: Swift.Bool?, isVerifiedFromKps: Swift.Bool?, activeLiveness: Swift.Bool?, bioRecognition: Swift.Bool?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension CoreVideo.CVBuffer {
+  @available(iOS 13.0, *)
+  public func sharpness() -> Swift.Float?
+  public func cgImage(withOrientation orientation: ImageIO.CGImagePropertyOrientation) -> CoreGraphics.CGImage?
+}
+@objc @_Concurrency.MainActor(unsafe) open class KYXViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) weak public var delegate: (any KYX.KYXViewControllerDelegate)?
+  @_Concurrency.MainActor(unsafe) required public init(delegate: (any KYX.KYXViewControllerDelegate)?, skippable: Swift.Bool = false)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidLayoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open var preferredStatusBarStyle: UIKit.UIStatusBarStyle {
+    @objc get
+  }
+  @_Concurrency.MainActor(unsafe) public func next()
+  @objc @_Concurrency.MainActor(unsafe) public func nextButtonTapped()
+  @objc @_Concurrency.MainActor(unsafe) public func exitButtonTapped()
+  @objc @_Concurrency.MainActor(unsafe) public func skip()
+  @objc @_Concurrency.MainActor(unsafe) public func skipProcess()
+  @objc @_Concurrency.MainActor(unsafe) public func dismiss()
+  @objc deinit
+}
+public enum KYXViewControllerOutputs {
+  case next
+  case dismiss
+  case success
+  case skip
+  case skipProcess
+  case failure(error: Swift.String)
+  case detectFrontResult(result: KYX.KYXProcessDetectTypeFrontResult)
+  case detectBackResult(result: KYX.KYXProcessDetectTypeBackResult)
+  case mrzParserResult(result: KYX.KYXProcessDetectTypeBackResult)
+  case nfcResult(result: KYX.KYXProcessNFCResult)
+  case livenessResult(result: KYX.KYXProcessLivenessResult)
+  case speechToTextResult(result: KYX.KYXProcessSpeechToTextResult)
+  case videoCallResult(result: KYX.KYXProcessVideoCallResult)
+  case tryAgain
+  case resultFinish
+  case exitProcess
+}
+public protocol KYXViewControllerDelegate : AnyObject {
+  func output(_ output: KYX.KYXViewControllerOutputs)
+}
+extension KYX.KYXIDTypes : Swift.Equatable {}
+extension KYX.KYXIDTypes : Swift.Hashable {}
+extension KYX.KYXDocumentType : Swift.Equatable {}
+extension KYX.KYXDocumentType : Swift.Hashable {}
+extension KYX.KYXDocumentType : Swift.RawRepresentable {}
+extension KYX.KYXLayout : Swift.Equatable {}
+extension KYX.KYXLayout : Swift.Hashable {}
+extension KYX.KYXErrors : Swift.Equatable {}
+extension KYX.KYXErrors : Swift.Hashable {}
+extension KYX.KYXViewSettings : Swift.Equatable {}
+extension KYX.KYXViewSettings : Swift.Hashable {}
+extension KYX.KYXStages : Swift.Equatable {}
+extension KYX.KYXStages : Swift.Hashable {}
+extension KYX.KYXStages : Swift.RawRepresentable {}
+extension KYX.KYXNFCSettings : Swift.Equatable {}
+extension KYX.KYXNFCSettings : Swift.Hashable {}
+extension KYX.KYXColors : Swift.Equatable {}
+extension KYX.KYXColors : Swift.Hashable {}
+extension KYX.KYXLanguage : Swift.Equatable {}
+extension KYX.KYXLanguage : Swift.Hashable {}
+extension KYX.KYXLanguage : Swift.RawRepresentable {}
